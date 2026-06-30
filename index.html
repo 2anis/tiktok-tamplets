@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ VAULT.AI — Premium Digital Resources</title>
+    <style>
+        /* Modern CSS Variables for easy customization */
+        :root {
+            --bg-dark: #07090e;
+            --card-bg: rgba(18, 22, 35, 0.6);
+            --primary-glow: #00f0ff;
+            --secondary-glow: #bd00ff;
+            --text-main: #ffffff;
+            --text-muted: #8b9bb4;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(189, 0, 255, 0.05) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Glassmorphism Navigation Bar */
+        nav {
+            max-width: 1200px;
+            margin: 0 auto 50px auto;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-badge {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: var(--primary-glow);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section with Animation */
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 60px auto 80px auto;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-glow) 30%, var(--secondary-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Premium Visual Cards Grid */
+        .grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            padding-bottom: 60px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.05);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-prompt { background: rgba(189, 0, 255, 0.25); color: #e47cff; border: 1px solid rgba(189, 0, 255, 0.4); }
+        .badge-template { background: rgba(0, 240, 255, 0.25); color: #70f5ff; border: 1px solid rgba(0, 240, 255, 0.4); }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 25px;
+            height: 45px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Sleek Button Interaction */
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #121623, #1a2136);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .btn {
+            background: linear-gradient(90deg, var(--primary-glow), var(--secondary-glow));
+            border-color: transparent;
+            color: #000000;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(0, 240, 255, 0.25);
+        }
+
+        /* Full Screen UI Overlay (Gateway) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 5, 9, 0.96);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modal-box {
+            background: rgba(20, 25, 40, 0.7);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 28px;
+            padding: 40px;
+            max-width: 480px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .modal-box h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .loader-circle {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.05);
+            border-top: 4px solid var(--primary-glow);
+            border-radius: 50%;
+            margin: 30px auto;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hidden Custom Ad Container inside Gateway */
+        .native-ad-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 25px;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a576c;
+            font-size: 0.85rem;
+        }
+
+        .action-btn {
+            background: var(--primary-glow);
+            color: #000;
+            font-weight: 700;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            width: 100%;
+            display: none;
+            box-shadow: 0 10px 25px rgba(0, 240, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <nav>
+        <div class="logo">VAULT.AI</div>
+        <div class="nav-badge">🔥 Free Hub</div>
+    </nav>
+
+    <!-- Hero Title -->
+    <section class="hero">
+        <h1>Unlock Premium <span>AI Prompts</span> & Video Assets</h1>
+        <p>Instant free access to high-converting assets, automated tools, and exclusive content creator packs.</p>
+    </section>
+
+    <!-- Cards Grid Structure -->
+    <main class="grid-container">
+        
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&width=600&auto=format&fit=crop" class="card-img" alt="Cyberpunk Prompts">
+                <div class="card-overlay">
+                    <span class="badge badge-prompt">AI Prompt Pack</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Cinematic Cyberpunk Insects</h3>
+                <p class="card-desc">The master prompt series used for dynamic 2D neon characters and bedtime story designs.</p>
+                <button class="btn" onclick="openGateway('https://docs.google.com/document/d/YOUR_REAL_PROMPT_LINK/edit')">
+                    Download Asset
+                </button>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&width=600&auto=format&fit=crop" class="card-img" alt="CapCut Templates">
+                <div class="card-overlay">
+                    <span class="badge badge-template">CapCut Fix</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <h3 class="card-title">Viral Short-Form Interface</h3>
+                <p class="card-desc">High retention overlay loop template optimized for TikTok, Instagram Reels, and YouTube Shorts.</p>
+                <button class="btn" onclick="openGateway('https://www.capcut.com/YOUR_REAL_TEMPLATE_LINK')">
+                    Download Asset
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Ultra Sleek Blur Modal Gateway -->
+    <div id="gatewayModal" class="modal">
+        <div class="modal-box">
+            <h2 id="modalTitle">Securing Connection...</h2>
+            
+            <!-- Paste your Adsterra Native/Banner code here inside this div -->
+            <div class="native-ad-panel">
+                [ Advertisement Space — Generating Download Stream ]
+            </div>
+
+            <div id="modalLoader" class="loader-circle"></div>
+            <p id="modalTimerText" style="color: var(--text-muted);">Please wait <span id="timerCount" style="color: var(--primary-glow); font-weight: 700;">5</span>s to verify access.</p>
+            
+            <button id="modalActionBtn" class="action-btn">Download Now</button>
+        </div>
+    </div>
+
+    <script>
+        let counter;
+        let timeLeft = 5;
+        let targetDestination = "";
+
+        function openGateway(destinationUrl) {
+            targetDestination = destinationUrl;
+            timeLeft = 5;
+            
+            // UI Reset
+            document.getElementById('gatewayModal').style.display = 'flex';
+            document.getElementById('modalLoader').style.display = 'block';
+            document.getElementById('modalTimerText').style.display = 'block';
+            document.getElementById('modalActionBtn').style.display = 'none';
+            document.getElementById('timerCount').textContent = timeLeft;
+            document.getElementById('modalTitle').textContent = "Securing Connection...";
+
+            // 👉 Triggers Adsterra Popunder right at initial click
+            // window.open('YOUR_ADSTERRA_DIRECT_LINK', '_blank');
+
+            counter = setInterval(function() {
+                timeLeft--;
+                document.getElementById('timerCount').textContent = timeLeft;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(counter);
+                    // UI State Update once timer finishes
+                    document.getElementById('modalTitle').textContent = "Link Ready!";
+                    document.getElementById('modalLoader').style.display = 'none';
+                    document.getElementById('modalTimerText').style.display = 'none';
+                    
+                    const actionButton = document.getElementById('modalActionBtn');
+                    actionButton.style.display = 'block';
+                    
+                    actionButton.onclick = function() {
+                        // 👉 Triggers second Optional Adsterra direct link on final confirmation
+                        // window.open('YOUR_ADSTERRA_DIRECT_LINK', '_blank');
+                        
+                        // Direct user to actual storage asset
+                        window.location.href = targetDestination;
+                    };
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
